@@ -232,9 +232,9 @@ footer-hover-col: "#0085A1"
 giscus:
   hostname: giscus.app # Replace with your giscus instance's hostname if self-hosting
   repository: "sorat0mo/sorat0mo.github.io" # GitHub username/repository eg. "daattali/beautiful-jekyll"
-  repository-id: R_kgDONtCnBQ # ID of your repository, retrieve this info from https://giscus.app
+  repository-id: R_kgDONtuNgA # ID of your repository, retrieve this info from https://giscus.app
   category: General # Category name of your GitHub Discussion posts
-  category-id: DIC_kwDONtCnBc4CmMmi # ID of your category, retrieve this info from https://giscus.app
+  category-id: DIC_kwDONtuNgM4CmOew # ID of your category, retrieve this info from https://giscus.app
   mapping: pathname
   reactions-enabled: 0
   emit-metadata: 0
