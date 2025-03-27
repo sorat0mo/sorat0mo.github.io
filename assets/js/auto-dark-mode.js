@@ -64,6 +64,13 @@ function applyTheme(theme) {
     });
   }
 
+function toggleTheme(){
+      const currentTheme = sessionStorage.getItem('theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      sessionStorage.setItem('theme', newTheme);
+      applyTheme(newTheme);
+}
+
   // You can add these functions to allow users to change themes
   // These can be called from buttons on your site
   window.setLightTheme = function() {
