@@ -72,10 +72,10 @@ function updateButtonIcons() {
       
       // Update theme toggle icon based on current theme
       if (themeMode === 'dark' || (themeMode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        themeToggle.classList.remove('fa-moon');
+        themeToggle.classList.remove('fa-adjust');
         themeToggle.classList.add('fa-sun');
       } else {
         themeToggle.classList.remove('fa-sun');
-        themeToggle.classList.add('fa-moon');
+        themeToggle.classList.add('fa-adjust');
       }
     }
