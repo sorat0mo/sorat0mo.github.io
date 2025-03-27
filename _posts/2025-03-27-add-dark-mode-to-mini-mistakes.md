@@ -8,7 +8,7 @@ I had been using [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll
 
 Beautiful Jekyll *technically* had a dark mode toggle available, but its scripts and css are only available to patreon supporters. I was on a tight budget and too lazy to create my own css stylesheets, so I didn't bother. Now that minimal mistakes have dark and light themes *by default*, I think I can achieve this with minimal efforts.
 
-![](https://files.catbox.moe/76q2iq.gif)
+![](https://files.catbox.moe/zhm3xc.gif)
 
 I finally decided to take this seriously, and found [this discussion](https://github.com/mmistakes/minimal-mistakes/discussions/2033), exactly what I looked for. I will try to document the changes I made below.
 
