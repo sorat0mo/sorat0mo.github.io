@@ -92,6 +92,7 @@ naver_site_verification  :
 yandex_site_verification :
 baidu_site_verification  :
 head_scripts:
+  - /assets/js/giscus-change-theme.js
   - /assets/js/vanilla-back-to-top.min.js
 
 # Social Sharing
