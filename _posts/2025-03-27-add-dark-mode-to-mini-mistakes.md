@@ -18,6 +18,8 @@ minimal_mistakes_skin_dark: "dark"
 
 # logo: "/assets/brand/logo.svg"
 # logo_dark: "/assets/brand/logo_dark.svg"
+head_scripts:
+  - /assets/js/dark-mode.js
 ```
 
 Then create a new file `/assets/css/main2.css`:
@@ -28,7 +30,61 @@ Then create a new file `/assets/css/main2.css`:
 @import "minimal-mistakes"; // main partials
 ```
 
-Next, find the file `_includes/head.html`, copy from [mmistakes/minimal-mistakes](https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/head.html) if using remote theme. Find the following line:
+After that, create a new file `/assets/js/dark-mode.js` with the following content:
+<details>
+  
+<summary>dark-mode.js</summary>
+
+```js
+function changeGiscusTheme(theme) {
+      function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+            setConfig: {
+                  theme: theme
+            }
+      });
+}
+
+function updateButtonIcons() {
+      themeMode = sessionStorage.getItem('theme');
+      themeToggle = document.getElementById('theme-toggle');
+      
+      // Update theme toggle icon based on current theme
+      if (themeMode === 'dark') {
+        themeToggle.classList.remove('fa-adjust');
+        themeToggle.classList.add('fa-sun');
+      } else {
+        themeToggle.classList.remove('fa-sun');
+        themeToggle.classList.add('fa-adjust');
+      }
+    }
+
+function toggleTheme() {
+      currentTheme = sessionStorage.getItem('theme');
+      newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      node1 = document.getElementById('theme_source');
+      node2 = document.getElementById('theme_source_2');
+      if (newTheme === "dark") {
+            sessionStorage.setItem('theme', 'dark');
+            node1.setAttribute('rel', 'stylesheet alternate');
+            node2.setAttribute('rel', 'stylesheet');
+          } else {
+            sessionStorage.setItem('theme', 'light');
+            node1.setAttribute('rel', 'stylesheet');
+            node2.setAttribute('rel', 'stylesheet alternate');
+          }
+      changeGiscusTheme(newTheme);
+      updateButtonIcons();
+}
+```
+
+</details>
+
+Next, in the file `_includes/head.html`, copy from [mmistakes/minimal-mistakes](https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/head.html) if using remote theme. Find the following line:
 ```html
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 ```
@@ -89,43 +145,10 @@ Then, find the following line in the same file:
 {% raw %}{% if site.search == true %}{% endraw %}
 ```
 
-Replace it with:
+Add the following **above** this line:
 ```liquid
 {% raw %}{% if site.minimal_mistakes_skin_dark %}
-  <i class="fas fa-fw fa-sun" aria-hidden="true" onclick="node1=document.getElementById('theme_source');node2=document.getElementById('theme_source_2');if(node1.getAttribute('rel')=='stylesheet'){node1.setAttribute('rel', 'stylesheet alternate'); node2.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'dark');}else{node2.setAttribute('rel', 'stylesheet alternate'); node1.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'light');} return false;"></i>
-{% endif %}{% endraw %}
-```
-
-### Giscus theming
-I use [Giscus](https://giscus.app/) for comments management, the following will allow giscus to automatically change to dark mode with the toggle.
-
-First, add the following in the `_config.yml`:
-```yaml
-head_scripts:
-  - /assets/js/giscus-change-theme.js
-```
-
-After that, create a new file `/assets/js/giscus-change-theme.js`:
-
-```js
-function changeGiscusTheme (theme) {
-  function sendMessage(message) {
-    const iframe = document.querySelector('iframe.giscus-frame');
-    if (!iframe) return;
-    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-  }
-  sendMessage({
-    setConfig: {
-      theme: theme
-    }
-  });
-}
-```
-
-Find and replace the `<i class>` lines in `masthead.html` (posted above) with the following:
-```liquid
-{% raw %}{% if site.minimal_mistakes_skin_dark %}
-  <i class="fas fa-fw fa-sun" aria-hidden="true" onclick="node1=document.getElementById('theme_source');node2=document.getElementById('theme_source_2');if(node1.getAttribute('rel')=='stylesheet'){node1.setAttribute('rel', 'stylesheet alternate'); node2.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'dark');changeGiscusTheme('dark');}else{node2.setAttribute('rel', 'stylesheet alternate'); node1.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'light');changeGiscusTheme('light');} return false;"></i>
+  <i class="fas fa-fw fa-adjust" id="theme-toggle" aria-hidden="true" title="Toggle between light and dark mode" onclick="toggleTheme(); return false;"></i>
 {% endif %}{% endraw %}
 ```
 
