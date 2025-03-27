@@ -23,6 +23,8 @@ function toggleTheme() {
             node2.setAttribute('rel', 'stylesheet');
           } else {
             sessionStorage.setItem('theme', 'light');
+            node1.setAttribute('rel', 'stylesheet');
+            node2.setAttribute('rel', 'stylesheet alternate');
           }
       updateButtonIcons();
 }
