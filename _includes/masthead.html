@@ -34,7 +34,17 @@
           {%- endfor -%}
         </ul>
   <!-- Dark/Light mode toggle button -->
-  <i class="fas fa-fw {% if theme == 'light' %}fa-adjust{% else %}fa-sun{% endif%}" id="theme-toggle" aria-hidden="true" title="Toggle between light and dark mode" onclick="toggleTheme(); return false;"></i>
+  <script>
+    let theme = sessionStorage.getItem('theme');
+    if(theme === "dark")
+    {
+      <i class="fas fa-fw fa-sun" id="theme-toggle" aria-hidden="true" title="Toggle between light and dark mode" onclick="toggleTheme(); return false;"></i>
+    }
+    else
+    {
+      <i class="fas fa-fw fa-adjust" id="theme-toggle" aria-hidden="true" title="Toggle between light and dark mode" onclick="toggleTheme(); return false;"></i>
+    }
+  </script>
         {% if site.search == true %}
         <button class="search__toggle" type="button">
           <span class="visually-hidden">{{ site.data.ui-text[site.locale].search_label | default: "Toggle search" }}</span>
