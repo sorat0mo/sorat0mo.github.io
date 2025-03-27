@@ -18,6 +18,7 @@
 
 <!-- For all browsers -->
 
+{% comment %}
 <!-- Light mode -->
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
@@ -28,6 +29,26 @@
     @import url("{{ '/assets/css/main2.css' | relative_url }}") (prefers-color-scheme: dark);
   </style>
 {% endif %}
+{% endcomment %}
+
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" id="theme_source">
+{% if site.minimal_mistakes_skin_dark %}
+<link rel="stylesheet alternate" href="{{ '/assets/css/theme2.css' | relative_url }}" id="theme_source_2">
+<script>
+  let theme = sessionStorage.getItem('theme');
+  if (theme === "dark") {
+    sessionStorage.setItem('theme', 'dark');
+    node1 = document.getElementById('theme_source');
+    node2 = document.getElementById('theme_source_2');
+    node1.setAttribute('rel', 'stylesheet alternate');
+    node2.setAttribute('rel', 'stylesheet');
+  }
+  else {
+    sessionStorage.setItem('theme', 'light');
+  }
+</script>
+{% endif %}
+
 
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
