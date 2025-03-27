@@ -9,6 +9,7 @@ function applyTheme(theme) {
       node1.setAttribute('rel', 'stylesheet');
       node2.setAttribute('rel', 'stylesheet alternate');
     }
+    updateButtonIcons();
   }
 
   // Function to check system preference
