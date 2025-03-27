@@ -3,11 +3,12 @@ title: Add Dark Mode Toggle to Minimal Mistakes Theme
 toc: true
 toc_sticky: true
 ---
-
 ### The WHY
 I had been using [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll) since I created this blog. It was amazing: simple, responsive and quick. However, I still felt like it was too empty for my taste. Then I came across [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes). The *almost* perfect theme. If only there was a dark mode toggle.
 
 Beautiful Jekyll *technically* had a dark mode toggle available, but its scripts and css are only available to patreon supporters. I was on a tight budget and too lazy to create my own css stylesheets, so I didn't bother. Now that minimal mistakes have dark and light themes *by default*, I think I can achieve this with minimal efforts.
+
+![](https://files.catbox.moe/76q2iq.gif)
 
 I finally decided to take this seriously, and found [this discussion](https://github.com/mmistakes/minimal-mistakes/discussions/2033), exactly what I looked for. I will try to document the changes I made below.
 
