@@ -83,7 +83,7 @@ function toggleTheme() {
 ```
 
 Note: You can safely remove the function `changeGiscusTheme` if you do not use Giscus as comments system.
-{: .notice-info}
+{: .notice--info}
 </div>
 </details>
 
