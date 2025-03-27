@@ -34,7 +34,7 @@
           {%- endfor -%}
         </ul>
   <!-- Dark/Light mode toggle button -->
-  <i class="fas fa-fw fa-sun" id="theme-toggle" aria-hidden="true" title="Toggle between light and dark mode" onclick="node1=document.getElementById('theme_source');node2=document.getElementById('theme_source_2');if(node1.getAttribute('rel')=='stylesheet'){node1.setAttribute('rel', 'stylesheet alternate'); node2.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'dark');changeGiscusTheme('dark');}else{node2.setAttribute('rel', 'stylesheet alternate'); node1.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'light');changeGiscusTheme('light');} updateButtonIcons(); return false;"></i> 
+  <i class="fas fa-fw fa-adjust" id="theme-toggle" aria-hidden="true" title="Toggle between light and dark mode" onclick="node1=document.getElementById('theme_source');node2=document.getElementById('theme_source_2');if(node1.getAttribute('rel')=='stylesheet'){node1.setAttribute('rel', 'stylesheet alternate'); node2.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'dark');changeGiscusTheme('dark');}else{node2.setAttribute('rel', 'stylesheet alternate'); node1.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'light');changeGiscusTheme('light');} updateButtonIcons(); return false;"></i> 
         {% if site.search == true %}
         <button class="search__toggle" type="button">
           <span class="visually-hidden">{{ site.data.ui-text[site.locale].search_label | default: "Toggle search" }}</span>
