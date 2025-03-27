@@ -87,6 +87,7 @@ Note: You can safely remove the function `changeGiscusTheme` if you do not use G
 </div>
 </details>
 
+
 Next, in the file `_includes/head.html`, copy from [mmistakes/minimal-mistakes](https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/head.html) if using remote theme. Find the following line:
 ```html
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
