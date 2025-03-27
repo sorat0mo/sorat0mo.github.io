@@ -21,12 +21,13 @@ function toggleTheme() {
             sessionStorage.setItem('theme', 'dark');
             themeToggle.classList.remove('fa-adjust');
             themeToggle.classList.add('fa-sun');
+            changeGiscusTheme("dark");
           } else {
             node1.setAttribute('rel', 'stylesheet');
             node2.setAttribute('rel', 'stylesheet alternate');
             sessionStorage.setItem('theme', 'light');
             themeToggle.classList.remove('fa-sun');
             themeToggle.classList.add('fa-adjust');
+            changeGiscusTheme("light");
           }
-      changeGiscusTheme(newTheme);
 }
