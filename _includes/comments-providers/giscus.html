@@ -9,7 +9,7 @@
     }
 
     var script = document.createElement('script');
-    let giscusTheme = sessionStorage.getItem("theme");
+    let giscusTheme = sessionStorage.getItem("theme") === 'light' ? 'light' : 'dark';
     script.setAttribute('src', 'https://giscus.app/client.js');
     script.setAttribute('data-repo', '{{ site.repository | downcase }}');
     script.setAttribute('data-repo-id', '{{ site.comments.giscus.repo_id }}');
