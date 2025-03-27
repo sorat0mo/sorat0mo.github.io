@@ -50,40 +50,29 @@ function changeGiscusTheme(theme) {
       });
 }
 
-function updateButtonIcons() {
-      themeMode = sessionStorage.getItem('theme');
-      themeToggle = document.getElementById('theme-toggle');
-      
-      // Update theme toggle icon based on current theme
-      if (themeMode === 'dark') {
-        themeToggle.classList.remove('fa-adjust');
-        themeToggle.classList.add('fa-sun');
-      } else {
-        themeToggle.classList.remove('fa-sun');
-        themeToggle.classList.add('fa-adjust');
-      }
-    }
-
 function toggleTheme() {
-      currentTheme = sessionStorage.getItem('theme');
-      newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      themeToggle = document.getElementById('theme-toggle');
       node1 = document.getElementById('theme_source');
       node2 = document.getElementById('theme_source_2');
-      if (newTheme === "dark") {
-            sessionStorage.setItem('theme', 'dark');
+      if (node1.getAttribute('rel')=='stylesheet') {
             node1.setAttribute('rel', 'stylesheet alternate');
             node2.setAttribute('rel', 'stylesheet');
+            sessionStorage.setItem('theme', 'dark');
+            themeToggle.classList.remove('fa-adjust');
+            themeToggle.classList.add('fa-sun');
+            changeGiscusTheme("dark");
           } else {
-            sessionStorage.setItem('theme', 'light');
             node1.setAttribute('rel', 'stylesheet');
             node2.setAttribute('rel', 'stylesheet alternate');
+            sessionStorage.setItem('theme', 'light');
+            themeToggle.classList.remove('fa-sun');
+            themeToggle.classList.add('fa-adjust');
+            changeGiscusTheme("light");
           }
-      changeGiscusTheme(newTheme);
-      updateButtonIcons();
 }
 ```
 
-Note: You can safely remove the function `changeGiscusTheme` if you do not use Giscus as comments system.
+Note: You can safely remove the functions `changeGiscusTheme` if you do not use Giscus as comments system.
 {: .notice--info}
 </div>
 </details>
@@ -97,22 +86,22 @@ Next, in the file `_includes/head.html`, copy from [mmistakes/minimal-mistakes](
 Replace it with:
 ```html
 {% raw %}<link title="main" rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" id="theme_source">
-{% if site.minimal_mistakes_skin_dark %}
 <link rel="stylesheet alternate" href="{{ '/assets/css/main2.css' | relative_url }}" id="theme_source_2">
 <script>
-  let theme = sessionStorage.getItem('theme');
-  if (theme === "dark") {
-    sessionStorage.setItem('theme', 'dark');
-    node1 = document.getElementById('theme_source');
-    node2 = document.getElementById('theme_source_2');
-    node1.setAttribute('rel', 'stylesheet alternate');
-    node2.setAttribute('rel', 'stylesheet');
-  }
-  else {
-    sessionStorage.setItem('theme', 'light');
-  }
-</script>
-{% endif %}{% endraw %}
+    let theme = sessionStorage.getItem('theme');
+    if(theme === "dark")
+    {
+      sessionStorage.setItem('theme', 'dark');
+      node1 = document.getElementById('theme_source');
+      node2 = document.getElementById('theme_source_2');
+      node1.setAttribute('rel', 'stylesheet alternate'); 
+      node2.setAttribute('rel', 'stylesheet');
+    }
+    else
+    {
+      sessionStorage.setItem('theme', 'light');
+    }
+</script>{% endraw %}
 ```
 
 Then, find the file `_includes/masthead.html`, again, copy from [mmistakes/minimal-mistakes](https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/masthead.html) if it does not already exist. Add the following to the **top** of the file:
