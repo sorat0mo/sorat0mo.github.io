@@ -1,3 +1,16 @@
+function changeGiscusTheme(theme) {
+      function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+            setConfig: {
+                  theme: theme
+            }
+      });
+}
+
 function updateButtonIcons() {
       themeMode = sessionStorage.getItem('theme');
       themeToggle = document.getElementById('theme-toggle');
@@ -26,5 +39,6 @@ function toggleTheme() {
             node1.setAttribute('rel', 'stylesheet');
             node2.setAttribute('rel', 'stylesheet alternate');
           }
+      changeGiscusTheme(newTheme);
       updateButtonIcons();
 }
