@@ -11,6 +11,18 @@ function changeGiscusTheme(theme) {
       });
 }
 
+function updateThemeButton(){
+      let currentTheme = sessionStorage.getItem('theme');
+      let themeToggle = document.getElementById('theme-toggle');
+      if (currentTheme === 'dark') {
+            themeToggle.classList.remove('fa-adjust');
+            themeToggle.classList.add('fa-sun');
+      } else {
+            themeToggle.classList.remove('fa-sun');
+            themeToggle.classList.add('fa-adjust');
+      }
+}
+
 function toggleTheme() {
       themeToggle = document.getElementById('theme-toggle');
       node1 = document.getElementById('theme_source');
@@ -19,15 +31,12 @@ function toggleTheme() {
             node1.setAttribute('rel', 'stylesheet alternate');
             node2.setAttribute('rel', 'stylesheet');
             sessionStorage.setItem('theme', 'dark');
-            themeToggle.classList.remove('fa-adjust');
-            themeToggle.classList.add('fa-sun');
             changeGiscusTheme("dark");
           } else {
             node1.setAttribute('rel', 'stylesheet');
             node2.setAttribute('rel', 'stylesheet alternate');
             sessionStorage.setItem('theme', 'light');
-            themeToggle.classList.remove('fa-sun');
-            themeToggle.classList.add('fa-adjust');
             changeGiscusTheme("light");
           }
+      updateThemeButton();
 }
