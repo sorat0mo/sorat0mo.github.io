@@ -1,6 +1,4 @@
-<script>
-  // Function to apply theme
-  function applyTheme(theme) {
+function applyTheme(theme) {
     const node1 = document.getElementById('theme_source');
     const node2 = document.getElementById('theme_source_2');
     
@@ -67,4 +65,17 @@
     sessionStorage.setItem('theme', 'auto');
     applyTheme(getSystemTheme());
   }
-</script>
+
+function updateButtonIcons() {
+      const themeMode = sessionStorage.getItem('theme');
+      const themeToggle = document.getElementById('theme-toggle');
+      
+      // Update theme toggle icon based on current theme
+      if (themeMode === 'dark' || (themeMode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        themeToggle.classList.remove('fa-moon');
+        themeToggle.classList.add('fa-sun');
+      } else {
+        themeToggle.classList.remove('fa-sun');
+        themeToggle.classList.add('fa-moon');
+      }
+    }
