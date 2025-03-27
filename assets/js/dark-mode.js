@@ -11,34 +11,23 @@ function changeGiscusTheme(theme) {
       });
 }
 
-function updateButtonIcons() {
-      themeMode = sessionStorage.getItem('theme');
-      themeToggle = document.getElementById('theme-toggle');
-      
-      // Update theme toggle icon based on current theme
-      if (themeMode === 'dark') {
-        themeToggle.classList.remove('fa-adjust');
-        themeToggle.classList.add('fa-sun');
-      } else {
-        themeToggle.classList.remove('fa-sun');
-        themeToggle.classList.add('fa-adjust');
-      }
-    }
-
 function toggleTheme() {
       currentTheme = sessionStorage.getItem('theme');
-      newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      themeToggle = document.getElementById('theme-toggle');
       node1 = document.getElementById('theme_source');
       node2 = document.getElementById('theme_source_2');
-      if (newTheme === "dark") {
-            sessionStorage.setItem('theme', 'dark');
+      if (node1.getAttribute('rel')=='stylesheet') {
             node1.setAttribute('rel', 'stylesheet alternate');
             node2.setAttribute('rel', 'stylesheet');
+            sessionStorage.setItem('theme', 'dark');
+            themeToggle.classList.remove('fa-adjust');
+            themeToggle.classList.add('fa-sun');
           } else {
-            sessionStorage.setItem('theme', 'light');
             node1.setAttribute('rel', 'stylesheet');
             node2.setAttribute('rel', 'stylesheet alternate');
+            sessionStorage.setItem('theme', 'light');
+            themeToggle.classList.remove('fa-sun');
+            themeToggle.classList.add('fa-adjust');
           }
       changeGiscusTheme(newTheme);
-      updateButtonIcons();
 }
