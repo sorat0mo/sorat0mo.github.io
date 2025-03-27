@@ -34,17 +34,52 @@
 <link title="main" rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" id="theme_source">
 {% if site.minimal_mistakes_skin_dark %}
 <link rel="stylesheet alternate" href="{{ '/assets/css/main2.css' | relative_url }}" id="theme_source_2">
+
 <script>
   let theme = sessionStorage.getItem('theme');
+  
+  // If no theme is explicitly set in session storage, check system preference
+  if (theme === null) {
+    // Check if user prefers dark mode
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      theme = 'dark';
+    } else {
+      theme = 'light';
+    }
+    sessionStorage.setItem('theme', theme);
+  }
+  
+  // Apply theme based on session storage value
   if (theme === "dark") {
-    sessionStorage.setItem('theme', 'dark');
-    node1 = document.getElementById('theme_source');
-    node2 = document.getElementById('theme_source_2');
+    const node1 = document.getElementById('theme_source');
+    const node2 = document.getElementById('theme_source_2');
     node1.setAttribute('rel', 'stylesheet alternate');
     node2.setAttribute('rel', 'stylesheet');
   }
   else {
     sessionStorage.setItem('theme', 'light');
+  }
+  
+  // Listen for changes in the system preference
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (!sessionStorage.getItem('theme')) {
+        const newTheme = e.matches ? 'dark' : 'light';
+        sessionStorage.setItem('theme', newTheme);
+        
+        if (newTheme === 'dark') {
+          const node1 = document.getElementById('theme_source');
+          const node2 = document.getElementById('theme_source_2');
+          node1.setAttribute('rel', 'stylesheet alternate');
+          node2.setAttribute('rel', 'stylesheet');
+        } else {
+          const node1 = document.getElementById('theme_source');
+          const node2 = document.getElementById('theme_source_2');
+          node1.setAttribute('rel', 'stylesheet');
+          node2.setAttribute('rel', 'stylesheet alternate');
+        }
+      }
+    });
   }
 </script>
 {% endif %}
