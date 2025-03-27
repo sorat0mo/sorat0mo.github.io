@@ -53,8 +53,7 @@ Next, find the file `_includes/head.html`, copy from [mmistakes/minimal-mistakes
 
 Replace it with:
 ```html
-{% raw %}
-<link title="main" rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" id="theme_source">
+{% raw %}<link title="main" rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" id="theme_source">
 {% if site.minimal_mistakes_skin_dark %}
 <link rel="stylesheet alternate" href="{{ '/assets/css/main2.css' | relative_url }}" id="theme_source_2">
 <script>
@@ -70,31 +69,25 @@ Replace it with:
     sessionStorage.setItem('theme', 'light');
   }
 </script>
-{% endif %}
-{% endraw %}
+{% endif %}{% endraw %}
 ```
 
 Then, find the file `_includes/masthead.html`, again, copy from [mmistakes/minimal-mistakes](https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/masthead.html) if it does not already exist. Add the following to the **top** of the file:
 ```liquid
-{% raw %}
-{% capture logo_path %}{{ site.logo }}{% endcapture %}
-{% capture logo_path_dark %}{{ site.logo_dark }}{% endcapture %}
-{% endraw %}
+{% raw %}{% capture logo_path %}{{ site.logo }}{% endcapture %}
+{% capture logo_path_dark %}{{ site.logo_dark }}{% endcapture %}{% endraw %}
 ```
 
 In the same file, find the following code:
 ```liquid
-{% raw %}
-{% unless logo_path == empty %}
+{% raw %}{% unless logo_path == empty %}
   <a class="site-logo" href="{{ '/' | relative_url }}"><img src="{{ logo_path | relative_url }}" alt="{{ site.masthead_title | default: site.title }}"></a>
-{% endunless %}
-{% endraw %}
+{% endunless %}{% endraw %}
 ```
 
 Replace it with:
 ```liquid
-{% raw %}
-{% unless logo_path == empty %}
+{% raw %}{% unless logo_path == empty %}
   <a class="site-logo" href="{{ '/' | relative_url }}">
       <picture>
         {% unless logo_path_dark == empty %}
@@ -106,24 +99,19 @@ Replace it with:
         <img src="{{ logo_path | relative_url }}" alt="{{ site.masthead_title | default: site.title }}">
       </picture>
   </a>
-{% endunless %}
-{% endraw %}
+{% endunless %}{% endraw %}
 ```
 
 Then, find the following line in the same file:
 ```liquid
-{% raw %}
-{% if site.search == true %}
-{% endraw %}
+{% raw %}{% if site.search == true %}{% endraw %}
 ```
 
 Add the following lines directly above it:
 ```liquid
-{% raw %}
-{% if site.minimal_mistakes_skin_dark %}
+{% raw %}{% if site.minimal_mistakes_skin_dark %}
   <i class="fas fa-fw fa-sun" aria-hidden="true" onclick="node1=document.getElementById('theme_source');node2=document.getElementById('theme_source_2');if(node1.getAttribute('rel')=='stylesheet'){node1.setAttribute('rel', 'stylesheet alternate'); node2.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'dark');changeGiscusTheme('dark');}else{node2.setAttribute('rel', 'stylesheet alternate'); node1.setAttribute('rel', 'stylesheet');sessionStorage.setItem('theme', 'light');changeGiscusTheme('light');} return false;"></i>
-{% endif %}
-{% endraw %}
+{% endif %}{% endraw %}
 ```
 
 If you've followed through, then dark mode should be added to your jekyll site using the Minimal Mistake theme! You can click the sun button next to the search button in the top right corner of this page to see its effects.
