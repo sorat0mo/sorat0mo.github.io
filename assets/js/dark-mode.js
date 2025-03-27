@@ -12,7 +12,6 @@ function changeGiscusTheme(theme) {
 }
 
 function toggleTheme() {
-      currentTheme = sessionStorage.getItem('theme');
       themeToggle = document.getElementById('theme-toggle');
       node1 = document.getElementById('theme_source');
       node2 = document.getElementById('theme_source_2');
