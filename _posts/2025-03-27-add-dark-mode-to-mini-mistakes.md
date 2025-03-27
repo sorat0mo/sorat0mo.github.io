@@ -152,6 +152,7 @@ Add the following **above** this line:
 ```liquid
 {% raw %}{% if site.minimal_mistakes_skin_dark %}
   <i class="fas fa-fw fa-adjust" id="theme-toggle" aria-hidden="true" title="Toggle between light and dark mode" onclick="toggleTheme(); return false;"></i>
+  <script>updateThemeButton();</script>
 {% endif %}{% endraw %}
 ```
 
