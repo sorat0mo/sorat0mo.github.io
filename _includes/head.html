@@ -24,7 +24,10 @@
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
 
-{% if site.favicon %}<link rel="icon" href="{{ {{site.favicon}} | relative_url }}" />{% endif %}
+{% if site.favicon %}
+  {% capture favicon %}{{ site.favicon }}{% endcapture %}
+  <link rel="icon" href="{{ {{favicon}} | relative_url }}" />
+{% endif %}
 
 {% if site.head_scripts %}
   {% for script in site.head_scripts %}
