@@ -23,8 +23,23 @@ function updateThemeButton(){
       }
 }
 
+function ThemeOnLoad() {
+let theme = sessionStorage.getItem('theme');
+    if(theme === "dark" || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !window.ManualToggled))
+    {
+      sessionStorage.setItem('theme', 'dark');
+      node1 = document.getElementById('theme_source');
+      node2 = document.getElementById('theme_source_2');
+      node1.setAttribute('rel', 'stylesheet alternate'); 
+      node2.setAttribute('rel', 'stylesheet');
+    }
+    else
+    {
+      sessionStorage.setItem('theme', 'light');
+    }
+}
+
 function toggleTheme() {
-      themeToggle = document.getElementById('theme-toggle');
       node1 = document.getElementById('theme_source');
       node2 = document.getElementById('theme_source_2');
       if (node1.getAttribute('rel')=='stylesheet') {
@@ -39,4 +54,5 @@ function toggleTheme() {
             changeGiscusTheme("light");
           }
       updateThemeButton();
+      window.ManualToggled = true;
 }
