@@ -25,7 +25,7 @@ function updateThemeButton(){
 
 function themeOnLoad(){
 let theme = sessionStorage.getItem('theme');
-    if(theme === "dark" || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && (window.ManualToggled != 1)))
+    if(theme === "dark" || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !(sessionStorage.getItem('manualtoggled'))))
     {
       sessionStorage.setItem('theme', 'dark');
       node1 = document.getElementById('theme_source');
@@ -55,5 +55,5 @@ function toggleTheme() {
             changeGiscusTheme("light");
           }
       updateThemeButton();
-      window.ManualToggled = 1;
+      sessionStorage.setItem('manualtoggled', true);
 }
