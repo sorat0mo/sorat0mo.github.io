@@ -37,6 +37,7 @@ let theme = sessionStorage.getItem('theme');
     {
       sessionStorage.setItem('theme', 'light');
     }
+    updateThemeButton();
 }
 
 function toggleTheme() {
