@@ -23,7 +23,7 @@ function updateThemeButton(){
       }
 }
 
-function ThemeOnLoad() {
+function themeOnLoad(){
 let theme = sessionStorage.getItem('theme');
     if(theme === "dark" || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !window.ManualToggled))
     {
