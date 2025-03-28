@@ -62,8 +62,24 @@ function updateThemeButton(){
       }
 }
 
+function themeOnLoad(){
+let theme = sessionStorage.getItem('theme');
+    if(theme === "dark" || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !(sessionStorage.getItem('manualtoggled'))))
+    {
+      sessionStorage.setItem('theme', 'dark');
+      node1 = document.getElementById('theme_source');
+      node2 = document.getElementById('theme_source_2');
+      node1.setAttribute('rel', 'stylesheet alternate'); 
+      node2.setAttribute('rel', 'stylesheet');
+    }
+    else
+    {
+      sessionStorage.setItem('theme', 'light');
+    }
+    updateThemeButton();
+}
+
 function toggleTheme() {
-      themeToggle = document.getElementById('theme-toggle');
       node1 = document.getElementById('theme_source');
       node2 = document.getElementById('theme_source_2');
       if (node1.getAttribute('rel')=='stylesheet') {
@@ -78,6 +94,7 @@ function toggleTheme() {
             changeGiscusTheme("light");
           }
       updateThemeButton();
+      sessionStorage.setItem('manualtoggled', true);
 }
 ```
 
@@ -95,22 +112,7 @@ Next, in the file `_includes/head.html`, copy from [mmistakes/minimal-mistakes](
 Replace it with:
 ```html
 {% raw %}<link title="main" rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" id="theme_source">
-<link rel="stylesheet alternate" href="{{ '/assets/css/main2.css' | relative_url }}" id="theme_source_2">
-<script>
-    let theme = sessionStorage.getItem('theme');
-    if(theme === "dark")
-    {
-      sessionStorage.setItem('theme', 'dark');
-      node1 = document.getElementById('theme_source');
-      node2 = document.getElementById('theme_source_2');
-      node1.setAttribute('rel', 'stylesheet alternate'); 
-      node2.setAttribute('rel', 'stylesheet');
-    }
-    else
-    {
-      sessionStorage.setItem('theme', 'light');
-    }
-</script>{% endraw %}
+<link rel="stylesheet alternate" href="{{ '/assets/css/main2.css' | relative_url }}" id="theme_source_2">{% endraw %}
 ```
 
 Then, find the file `_includes/masthead.html`, again, copy from [mmistakes/minimal-mistakes](https://github.com/mmistakes/minimal-mistakes/blob/master/_includes/masthead.html) if it does not already exist. Add the following to the **top** of the file:
@@ -152,7 +154,7 @@ Add the following **above** this line:
 ```liquid
 {% raw %}{% if site.minimal_mistakes_skin_dark %}
   <i class="fas fa-fw fa-adjust" id="theme-toggle" aria-hidden="true" title="Toggle between light and dark mode" onclick="toggleTheme(); return false;"></i>
-  <script>updateThemeButton();</script>
+  <script>themeOnLoad();</script>
 {% endif %}{% endraw %}
 ```
 
