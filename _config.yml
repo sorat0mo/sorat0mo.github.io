@@ -126,9 +126,10 @@ author:
   bio              : "A cup of tea a day, drives my worry away."
   location         : "Hong Kong"
   email            : karsten@lilme.cc
+  github           : sorat0mo
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope"
+    #- label: "Email"
+      # icon: "fas fa-fw fa-envelope"
       # url: "mailto:your.name@email.com"
     # - label: "Website"
       # icon: "fas fa-fw fa-link"
@@ -139,9 +140,9 @@ author:
     # - label: "Facebook"
       # icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/sorat0mo"
+    # - label: "GitHub"
+      # icon: "fab fa-fw fa-github"
+      # url: "https://github.com/sorat0mo"
     # - label: "Instagram"
       # icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
