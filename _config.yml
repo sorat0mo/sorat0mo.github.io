@@ -24,6 +24,7 @@ rtl                      : # true, false (default) # turns direction of the page
 title                    : "LIL ME"
 title_separator          : "-"
 subtitle                 : "Jot down my thoughts" # site tagline that appears below site title in masthead
+favicon                  : "/favicon.png" # relative path
 name                     : "Karsten"
 description              : "An amazing website."
 url                      : "https://lilme.cc" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
