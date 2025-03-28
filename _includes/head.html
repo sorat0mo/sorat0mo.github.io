@@ -24,7 +24,7 @@
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
 
-<link rel="icon" href="{{ '/favicon.png' | relative_url }}" />
+{% if site.favicon %}<link rel="icon" href="{{ {{site.favicon}} | relative_url }}" />{% endif %}
 
 {% if site.head_scripts %}
   {% for script in site.head_scripts %}
